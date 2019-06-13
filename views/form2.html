@@ -16,13 +16,23 @@
 <!-- fat-free shortcut, could also be in regular php-->
 <form action="#" method="post">
     <label>Color</label>
-    <select class="form-control" name="color" id="color">
-        <option>--Select a color--</option>
-        <repeat group="{{@colors}}" value="{{@color}}">
-            <option>{{@color}}</option>
-        </repeat>
-    </select>
+
+    <div class="col-sm-3">
+        <check if="{{ isset(@errors['color']) }}">
+            <p>{{ @errors['color'] }}</p>
+        </check>
+        <select class="form-control" name="color">
+            <option>--Select a color--</option>
+            <repeat group="{{ @colors }}" value="{{ @colorOption }}">
+                <option>
+                    <check if="{{ @colorOption == @colors }}">selected</check>
+                    {{ @colorOption }}
+                </option>
+            </repeat>
+        </select>
+    </div>
     <button type="submit">Submit</button>
+
 </form>
 
 <!-- Optional JavaScript -->
