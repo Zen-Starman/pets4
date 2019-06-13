@@ -17,3 +17,16 @@ function validString($string) {
 function validQty($qty){
     return !empty($qty) && ctype_digit($qty) && qty > 0;
 }
+$acceptedTraits = ['quick', 'lazy', 'small', 'big'];
+
+function validTraits($traits) {
+    global $f3;
+
+    foreach ($traits as $trait) {
+        if (!in_array($trait, $f3->get('fur'))) {
+            return false;
+        }
+    }
+
+    return true;
+}
