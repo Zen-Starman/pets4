@@ -23,38 +23,6 @@ $f3->route('GET /', function()
     echo $view->render('views/home.html');
 });
 
-$f3->route('GET /@animal', function($f3, $params)
-{
-    //Display a view-set view as new template and echo out the view
-    //$view = new Template();
-    //echo $view->render('views/home.html');
-});
-
-//Define a route with a parameter
-$f3->route('GET /@animal', function($f3, $params) {
-    $animal = $params['animal'];
-
-        switch ($animal) {
-            case 'dog':
-                echo "<h3>Woof!</h3>";
-                break;
-            case 'cat':
-                echo "<h3>Meow</h3>";
-                break;
-            case 'pig':
-                echo "<h3>Oink</h3>";
-                break;
-            case 'bear':
-                echo "<h3>Grrr</h3>";
-                break;
-            case 'bird':
-                echo "<h3>Hello</h3>";
-                break;
-            default:
-                $f3->error(404);
-        }
-});
-
 $f3->route('GET|POST /order', function($f3) {
     $_SESSION = [];
     if (isset($_POST))
@@ -99,6 +67,31 @@ $f3->route('GET|POST /order2', function($f3) {
 $f3->route('GET /results', function() {
     $view = new Template();
     echo $view->render('views/results.html');
+});
+
+//Define a route with a parameter
+$f3->route('GET /@animal', function($f3, $params) {
+    $animal = $params['animal'];
+
+    switch ($animal) {
+        case 'dog':
+            echo "<h3>Woof!</h3>";
+            break;
+        case 'cat':
+            echo "<h3>Meow</h3>";
+            break;
+        case 'pig':
+            echo "<h3>Oink</h3>";
+            break;
+        case 'bear':
+            echo "<h3>Grrr</h3>";
+            break;
+        case 'bird':
+            echo "<h3>Hello</h3>";
+            break;
+        default:
+            $f3->error(404);
+    }
 });
 
 //Run fat free F3
