@@ -14,6 +14,8 @@ $f3 = Base::instance();
 //Turn on Fat-free error reporting/Debugging
 $f3->set('DEBUG',3);
 $f3->set('colors', ['pink', 'green', 'blue']);
+$f3->set('fur', ['hairless', 'short', 'medium', 'long', 'extra shaggy']);
+
 
 //Define a default route (use backlash / )
 $f3->route('GET /', function()
@@ -47,6 +49,7 @@ $f3->route('GET|POST /order', function($f3) {
 });
 
 $f3->route('GET|POST /order2', function($f3) {
+
     if (isset($_POST['color']))
     {
         $color = $_POST['color'];

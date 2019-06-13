@@ -31,6 +31,27 @@
             </repeat>
         </select>
     </div>
+
+
+    <p>Select Fur Length</p>
+        <check if="{{ @errors['fur'] }}">
+            <span class="err">{{ @errors['fur'] }}</span>
+        </check><br>
+
+        <repeat group="{{ @fur }}" value="{{ @furOption }}">
+            <label>
+                <input type="checkbox"
+                       name="fur"
+                       value="{{ @furOption }}"
+                <check if="{{ @furOption == @fur }}">
+                    checked="checked"
+                </check>
+                >
+                {{ @furOption }}
+            </label><br>
+        </repeat>
+
+
     <button type="submit">Submit</button>
 
 </form>
