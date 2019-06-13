@@ -1,0 +1,16 @@
+{
+  "name" : "ztsgreen/328/pets4",
+  "authors": [
+    {
+      "name" : "Zane Stearman",
+      "email" : "zstearman@mail.greenriver.edu"
+    },
+    {
+      "name" : "Evan Wheeler",
+      "email" : "ewheeler5@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core" : "dev-master"
+  }
+}
