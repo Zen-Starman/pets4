@@ -24,8 +24,7 @@
         <select class="form-control" name="color">
             <option>--Select a color--</option>
             <repeat group="{{ @colors }}" value="{{ @colorOption }}">
-                <option>
-                    <check if="{{ @colorOption == @colors }}">selected</check>
+                <option <check if="{{ @colorOption == @POST.color }}">selected</check>>
                     {{ @colorOption }}
                 </option>
             </repeat>
@@ -43,14 +42,13 @@
                 <input type="checkbox"
                        name="fur"
                        value="{{ @furOption }}"
-                <check if="{{ @furOption == @fur }}">
-                    checked="checked"
+                <check if="{{ @furOption == @POST.fur }}">
+                    checked
                 </check>
                 >
                 {{ @furOption }}
             </label><br>
         </repeat>
-
 
     <button type="submit">Submit</button>
 

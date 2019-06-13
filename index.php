@@ -20,28 +20,45 @@ $f3->set('fur', ['hairless', 'short', 'medium', 'long', 'extra shaggy']);
 //Define a default route (use backlash / )
 $f3->route('GET /', function()
 {
+    // empty the session array
+    $_SESSION = [];
+
     //Display a view-set view as new template and echo out the view
     $view = new Template();
     echo $view->render('views/home.html');
 });
 
 $f3->route('GET|POST /order', function($f3) {
-    $_SESSION = [];
-    if (isset($_POST))
+
+    if (!empty($_POST))
     {
         $animal = $_POST['animal'];
         $qty = $_POST['qty'];
+        $valid = true;
 
-        if (validString($animal) && validQty($qty))
+        if (validString($animal))
         {
             $_SESSION['animal'] = $animal;
-            $_SESSION['qty'] = $qty;
-            $f3->reroute('/order2');
         }
         else
         {
             $f3->set("errors['animal']", 'Please enter a valid animal.');
+            $valid = false;
+        }
+
+        if (validQty($qty))
+        {
+            $_SESSION['qty'] = $qty;
+        }
+        else
+        {
             $f3->set("errors['qty']", 'Please enter a valid quantity.');
+            $valid = false;
+        }
+
+        if ($valid)
+        {
+            $f3->reroute('/order2');
         }
     }
     $view = new Template();
@@ -50,17 +67,35 @@ $f3->route('GET|POST /order', function($f3) {
 
 $f3->route('GET|POST /order2', function($f3) {
 
-    if (isset($_POST['color']))
+    if (!empty($_POST))
     {
         $color = $_POST['color'];
+        $fur = $_POST['fur'];
+        $valid = true;
+
         if (validColor($color))
         {
             $_SESSION['color'] = $color;
-            $f3->reroute('/results');
         }
         else
         {
             $f3->set("errors['color']", 'Please enter a valid color.');
+            $valid = false;
+        }
+
+        if (validFur($fur))
+        {
+            $_SESSION['fur'] = $fur;
+        }
+        else
+        {
+            $f3->set("errors['fur']", 'Please choose a valid fur type.');
+            $valid = false;
+        }
+
+        if ($valid)
+        {
+            $f3->reroute('/results');
         }
     }
     $view = new Template();

@@ -15,18 +15,11 @@ function validString($string) {
 }
 
 function validQty($qty){
-    return !empty($qty) && ctype_digit($qty) && qty > 0;
+    return !empty($qty) && ctype_digit($qty) && $qty > 0;
 }
-$acceptedTraits = ['quick', 'lazy', 'small', 'big'];
 
-function validTraits($traits) {
+function validFur($fur) {
     global $f3;
 
-    foreach ($traits as $trait) {
-        if (!in_array($trait, $f3->get('fur'))) {
-            return false;
-        }
-    }
-
-    return true;
+    return in_array($fur, $f3->get('fur'));
 }
